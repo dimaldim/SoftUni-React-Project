@@ -1,17 +1,52 @@
 import React from 'react';
-import './App.css';
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Container, Jumbotron } from 'react-bootstrap';
+
+import { Route, Switch } from 'react-router-dom';
+import { connect } from 'react-redux';
+
+import ProtectedRoute from './components/protectedRoute';
+import Home from './components/Home';
+import Login from './components/User/Login';
+import { Container } from '@material-ui/core';
+import Register from './components/User/Register';
 import Navigation from './components/Navigation';
-import Content from './components/Content';
+import Gallery from './components/Gallery';
 
-const App = () => (
-  <Container className="p-3">
-    <Navigation/>
-    <Jumbotron>
-      <Content/>
-    </Jumbotron>
-  </Container>
-);
+function App(props)
+{
+  const { isAuthenticated, isVerifying } = props;
+  return (
+    <div>
+      <Navigation/>
+      <Container maxWidth="sm">
+        <Switch>
+          <ProtectedRoute
+            exact
+            path="/"
+            component={Home}
+            isAuthenticated={isAuthenticated}
+            isVerifying={isVerifying}
+          />
+          <ProtectedRoute
+            exact
+            path="/gallery"
+            component={Gallery}
+            isAuthenticated={isAuthenticated}
+            isVerifying={isVerifying}
+          />
+          <Route path="/login" component={Login}/>
+          <Route path="/register" component={Register}/>
+        </Switch>
+      </Container>
+    </div>
+  );
+}
 
-export default App;
+function mapStateToProps(state)
+{
+  return {
+    isAuthenticated: state.auth.isAuthenticated,
+    isVerifying: state.auth.isVerifying,
+  };
+}
+
+export default connect(mapStateToProps)(App);

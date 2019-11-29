@@ -1,21 +1,45 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
-import { Card } from 'react-bootstrap';
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { logoutUser } from '../actions';
+import { Button, Paper } from '@material-ui/core';
 
-const Home = function()
+class Home extends Component
 {
-  return (
-      <Card>
-        <Card.Header>Welcome</Card.Header>
-        <Card.Body>
-          <Card.Title>Welcome, guest!</Card.Title>
-          <Card.Text>
-            In order to play the game, you must be a registered user! You can register from <Link
-            to='/register'>here</Link>.
-          </Card.Text>
-        </Card.Body>
-      </Card>
-  );
-};
+  handleLogout = () =>
+  {
+    const { dispatch } = this.props;
+    dispatch(logoutUser());
+  };
 
-export default Home;
+  render()
+  {
+    const { isLoggingOut, logoutError } = this.props;
+    return (
+      <div>
+        <h1>This is your app's protected area.</h1>
+        <p>Any routes here will also be protected</p>
+        <Button
+          type="button"
+          fullWidth
+          variant="contained"
+          color="primary"
+          onClick={this.handleLogout}
+        >
+          Logout
+        </Button>
+        {isLoggingOut && <p>Logging Out....</p>}
+        {logoutError && <p>Error logging out</p>}
+      </div>
+    );
+  }
+}
+
+function mapStateToProps(state)
+{
+  return {
+    isLoggingOut: state.auth.isLoggingOut,
+    logoutError: state.auth.logoutError,
+  };
+}
+
+export default connect(mapStateToProps)(Home);
