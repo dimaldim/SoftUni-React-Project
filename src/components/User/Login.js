@@ -73,6 +73,11 @@ class Login extends Component
             <Typography component="h1" variant="h5">
               Sign in
             </Typography>
+            {loginError && (
+              <Typography component="p" className={classes.errorText}>
+                Incorrect email or password.
+              </Typography>
+            )}
             <TextField
               variant="outlined"
               margin="normal"
@@ -92,11 +97,6 @@ class Login extends Component
               id="password"
               onChange={this.handlePasswordChange}
             />
-            {loginError && (
-              <Typography component="p" className={classes.errorText}>
-                Incorrect email or password.
-              </Typography>
-            )}
             <Button
               type="button"
               fullWidth
@@ -106,17 +106,6 @@ class Login extends Component
               onClick={this.handleSubmit}
             >
               Sign In
-            </Button>
-            or
-            <Button
-              type="button"
-              fullWidth
-              variant="contained"
-              color="primary"
-              className={classes.submit}
-              onClick={this.handleSubmit}
-            >
-              Register
             </Button>
           </Paper>
       );

@@ -28,7 +28,8 @@ class Navigation extends Component
 
   render()
   {
-    const { classes, isAuthenticated } = this.props;
+    const { classes, isAuthenticated, userInfo } = this.props;
+    console.log(userInfo);
     return (
       <AppBar position="static">
         <Toolbar>
@@ -38,6 +39,11 @@ class Navigation extends Component
           <Typography variant="h6" className={classes.title}>
             Recognize Me :-)
           </Typography>
+          {isAuthenticated &&
+          <Typography>
+            Welcome, {userInfo.email}
+          </Typography>
+          }
           <Button component={Link} to="/" variant="contained" color="primary">
             Home
           </Button>
@@ -66,6 +72,7 @@ class Navigation extends Component
 function mapStateToProps(state)
 {
   return {
+    userInfo: state.auth.user,
     isLoggingIn: state.auth.isLoggingIn,
     loginError: state.auth.loginError,
     isAuthenticated: state.auth.isAuthenticated,

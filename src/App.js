@@ -6,7 +6,7 @@ import { connect } from 'react-redux';
 import ProtectedRoute from './components/protectedRoute';
 import Home from './components/Home';
 import Login from './components/User/Login';
-import { Container } from '@material-ui/core';
+import { Container, CircularProgress } from '@material-ui/core';
 import Register from './components/User/Register';
 import Navigation from './components/Navigation';
 import Gallery from './components/Gallery';

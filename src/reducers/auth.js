@@ -5,16 +5,19 @@ import {
   LOGOUT_FAILURE,
   LOGOUT_REQUEST,
   LOGOUT_SUCCESS,
+  REGISTER_FAILURE,
   VERIFY_REQUEST,
   VERIFY_SUCCESS,
 } from '../actions/';
 
 export default (
   state = {
+    isLoading: false,
     isLoggingIn: false,
     isLoggingOut: false,
     isVerifying: false,
     loginError: false,
+    registration: {},
     logoutError: false,
     isAuthenticated: false,
     user: {},
@@ -24,6 +27,11 @@ export default (
 {
   switch (action.type)
   {
+    case REGISTER_FAILURE:
+      return {
+        ...state,
+        registration: action.error,
+      };
     case LOGIN_REQUEST:
       return {
         ...state,
