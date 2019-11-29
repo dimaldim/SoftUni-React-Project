@@ -1,10 +1,11 @@
-import React, { useState } from 'react';
+import React, {useState} from 'react';
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import { Navbar, Nav, NavDropdown, Button, Container, Toast } from "react-bootstrap";
+import {Button, Container, Toast} from "react-bootstrap";
 import Navigation from "./components/Navigation";
 
-const ExampleToast = ({ children }) => {
+const ExampleToast = ({children}) =>
+{
 	const [show, toggleShow] = useState(true);
 
 	return (
@@ -22,7 +23,7 @@ const ExampleToast = ({ children }) => {
 
 const App = () => (
 <Container className="p-3">
-	<Navigation />
+	<Navigation/>
 </Container>
 );
 
