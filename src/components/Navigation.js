@@ -39,29 +39,33 @@ class Navigation extends Component
           <Typography variant="h6" className={classes.title}>
             Recognize Me :-)
           </Typography>
-          {isAuthenticated &&
-          <Typography>
-            Welcome, {userInfo.email}
-          </Typography>
-          }
-          <Button component={Link} to="/" variant="contained" color="primary">
-            Home
-          </Button>
-          <Button component={Link} to="/gallery" variant="contained" color="primary">
-            Gallery
-          </Button>
-          {!isAuthenticated && <Button component={Link} to="/login" variant="contained" color="primary">
-            Login
-          </Button>}
-          {!isAuthenticated &&
-          <Button component={Link} to="/register" variant="contained" color="primary">
-            Register
-          </Button>
-          }
-          {isAuthenticated &&
-          <Button onClick={this.handleLogout} variant="contained" color="primary">
-            Logout
-          </Button>
+          {isAuthenticated ?
+            (
+              [
+                <Typography>
+                  Welcome, {userInfo.email}
+                </Typography>,
+                <Button component={Link} to="/" variant="contained" color="primary">
+                  Home
+                </Button>,
+                <Button component={Link} to="/gallery" variant="contained" color="primary">
+                  Gallery
+                </Button>,
+                <Button onClick={this.handleLogout} variant="contained" color="primary">
+                  Logout
+                </Button>,
+              ]
+            ) :
+            (
+              [
+                <Button component={Link} to="/login" variant="contained" color="primary">
+                  Login
+                </Button>,
+                <Button component={Link} to="/register" variant="contained" color="primary">
+                  Register
+                </Button>,
+              ]
+            )
           }
         </Toolbar>
       </AppBar>
