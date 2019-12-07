@@ -13,6 +13,8 @@ export const REGISTER_FAILURE = 'REGISTER_FAILURE';
 export const VERIFY_REQUEST = 'VERIFY_REQUEST';
 export const VERIFY_SUCCESS = 'VERIFY_SUCCESS';
 
+export const LOADING_SCREEN = 'LOADING_SCREEN';
+
 const requestLogin = () =>
 {
   return {
@@ -78,6 +80,15 @@ const verifySuccess = () =>
   };
 };
 
+const loading = param =>
+{
+  return {
+    type: LOADING_SCREEN,
+    param,
+  };
+};
+
+
 export const loginUser = (email, password) => dispatch =>
 {
   dispatch(requestLogin());
@@ -140,4 +151,9 @@ export const registerUser = (email, password) => dispatch =>
     {
       dispatch(registerError(error));
     });
+};
+
+export const doLoading = (param) => dispatch =>
+{
+  dispatch(loading(param));
 };

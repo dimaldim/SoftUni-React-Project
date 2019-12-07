@@ -5,7 +5,7 @@ import { loginUser } from '../../actions';
 import { withStyles } from '@material-ui/styles';
 
 import LockOutlinedIcon from '@material-ui/icons/LockOutlined';
-import { Avatar, Button, TextField, Typography, Paper, Container } from '@material-ui/core';
+import { Avatar, Button, Paper, TextField, Typography } from '@material-ui/core';
 
 const styles = () => ({
   '@global': {
@@ -66,6 +66,16 @@ class Login extends Component
     } else
     {
       return (
+        <div>
+          <Paper className={classes.paper}>
+            <Typography variant="h5" component="h3">
+              Welcome
+            </Typography>
+            <Typography component="p">
+              Please Log In in order to play! If you don't have registration, you can register from the button in the
+              navigation bar.
+            </Typography>
+          </Paper>
           <Paper className={classes.paper}>
             <Avatar className={classes.avatar}>
               <LockOutlinedIcon/>
@@ -108,6 +118,7 @@ class Login extends Component
               Sign In
             </Button>
           </Paper>
+        </div>
       );
     }
   }

@@ -1,4 +1,5 @@
 import {
+  LOADING_SCREEN,
   LOGIN_FAILURE,
   LOGIN_REQUEST,
   LOGIN_SUCCESS,
@@ -31,17 +32,20 @@ export default (
       return {
         ...state,
         registration: action.error,
+        isLoading: false,
       };
     case LOGIN_REQUEST:
       return {
         ...state,
         isLoggingIn: true,
+        isLoading: true,
         loginError: false,
       };
     case LOGIN_SUCCESS:
       return {
         ...state,
         isLoggingIn: false,
+        isLoading: false,
         isAuthenticated: true,
         user: action.user,
       };
@@ -49,6 +53,7 @@ export default (
       return {
         ...state,
         isLoggingIn: false,
+        isLoading: false,
         isAuthenticated: false,
         loginError: true,
       };
@@ -56,12 +61,14 @@ export default (
       return {
         ...state,
         isLoggingOut: true,
+        isLoading: true,
         logoutError: false,
       };
     case LOGOUT_SUCCESS:
       return {
         ...state,
         isLoggingOut: false,
+        isLoading: false,
         isAuthenticated: false,
         user: {},
       };
@@ -69,6 +76,7 @@ export default (
       return {
         ...state,
         isLoggingOut: false,
+        isLoading: false,
         logoutError: true,
       };
     case VERIFY_REQUEST:
@@ -81,6 +89,11 @@ export default (
       return {
         ...state,
         isVerifying: false,
+      };
+    case LOADING_SCREEN:
+      return {
+        ...state,
+        isLoading: action.param,
       };
     default:
       return state;
