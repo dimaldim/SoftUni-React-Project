@@ -25,12 +25,12 @@ class Home extends Component
     this.handleClick = this.handleClick.bind(this);
     this.getEmotion = this.getEmotion.bind(this);
     this.closeModalCaptured = this.closeModalCaptured.bind(this);
+    this.closeModalCapturedError = this.closeModalCapturedError.bind(this);
   }
 
   closeModalCapturedError()
   {
-    var that = this;
-    that.setState({
+    this.setState({
       modalCapturedError: false,
     });
   }

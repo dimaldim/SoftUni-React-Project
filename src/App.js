@@ -37,13 +37,7 @@ function App(props)
             isAuthenticated={isAuthenticated}
             isVerifying={isVerifying}
           />
-          <ProtectedRoute
-            exact
-            path="/gallery"
-            component={Gallery}
-            isAuthenticated={isAuthenticated}
-            isVerifying={isVerifying}
-          />
+          <Route path="/gallery" component={Gallery}/>
           <Route path="/login" component={Login}/>
           <Route path="/register" component={Register}/>
         </Switch>

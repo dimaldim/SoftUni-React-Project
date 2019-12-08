@@ -19,7 +19,7 @@ class Gallery extends Component
   constructor(props)
   {
     super(props);
-    this.ref = myFirebase.firestore().collection('gallery');
+    this.ref = myFirebase.firestore().collection('gallery').orderBy('date', 'desc');
     this.unsubscribe = null;
     this.state = {
       images: [],
